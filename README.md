@@ -35,6 +35,8 @@ The containers apply the configuration from the manual steps for you:
 
 Host ports are set in `.env` too (`POSTGRES_PORT`, `API_PORT`, `JUPYTER_PORT`; defaults 5432, 9000, 8888). Change them if a port is already in use, and use the new port in the URLs above.
 
+The API and JupyterLab are published on all interfaces (`BIND_ADDRESS=0.0.0.0`), so they are reachable from other machines; PostgreSQL stays on localhost. Set `BIND_ADDRESS=127.0.0.1` to keep them local. **JupyterLab runs without a login by default: set `JUPYTER_TOKEN` in `.env` when the server is reachable from a network**, because anyone who can open it can run code on the host.
+
 Release tags are set in `.env` (see `template.env`): `API_TAG` (default `2026-04`) and `RELEASE_TAG` (default `2026-08`). If `%publish` fails, set both to the same release and rebuild with `docker compose up -d --build`.
 
 The rest of this guide describes the manual setup. The tutorial in Part 3 works with either.
