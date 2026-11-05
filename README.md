@@ -33,6 +33,8 @@ The containers apply the configuration from the manual steps for you:
 * Play's allowed-hosts filter is extended so requests to `api:9000` are accepted.
 * `sbt run` is kept alive with an open stdin (Play dev mode stops on EOF inside a container).
 
+Host ports are set in `.env` too (`POSTGRES_PORT`, `API_PORT`, `JUPYTER_PORT`; defaults 5432, 9000, 8888). Change them if a port is already in use, and use the new port in the URLs above.
+
 Release tags are set in `.env` (see `template.env`): `API_TAG` (default `2026-04`) and `RELEASE_TAG` (default `2026-08`). If `%publish` fails, set both to the same release and rebuild with `docker compose up -d --build`.
 
 The rest of this guide describes the manual setup. The tutorial in Part 3 works with either.
