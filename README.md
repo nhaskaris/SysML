@@ -37,6 +37,15 @@ Host ports are set in `.env` too (`POSTGRES_PORT`, `API_PORT`, `JUPYTER_PORT`; d
 
 The API and JupyterLab are published on all interfaces (`BIND_ADDRESS=0.0.0.0`), so they are reachable from other machines; PostgreSQL stays on localhost. Set `BIND_ADDRESS=127.0.0.1` to keep them local. **JupyterLab runs without a login by default: set `JUPYTER_TOKEN` in `.env` when the server is reachable from a network**, because anyone who can open it can run code on the host.
 
+Prebuilt images are published to the GitHub Container Registry by a GitHub Actions workflow (`.github/workflows/docker.yml`), so you can skip the slow local build:
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+`IMAGE_PREFIX` in `.env` selects the registry/owner (default `ghcr.io/nhaskaris`). `docker compose up -d --build` still builds the images locally. The image tags follow `API_TAG` and `RELEASE_TAG`.
+
 Release tags are set in `.env` (see `template.env`): `API_TAG` (default `2026-04`) and `RELEASE_TAG` (default `2026-08`). If `%publish` fails, set both to the same release and rebuild with `docker compose up -d --build`.
 
 The rest of this guide describes the manual setup. The tutorial in Part 3 works with either.

@@ -17,6 +17,7 @@ services:
       retries: 20
 
   api:
+    image: ${IMAGE_PREFIX:-ghcr.io/nhaskaris}/sysml-api:${API_TAG:-2026-04}
     build:
       context: ./api
       args:
@@ -45,6 +46,7 @@ services:
       start_period: 120s
 
   jupyter:
+    image: ${IMAGE_PREFIX:-ghcr.io/nhaskaris}/sysml-jupyter:${RELEASE_TAG:-2026-08}
     build:
       context: ./jupyter
       args:
