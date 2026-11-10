@@ -28,6 +28,7 @@ services:
       DB_NAME: sysml2
       DB_USER: postgres
       DB_PASSWORD: postgres
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-.}
     depends_on:
       postgres:
         condition: service_healthy
